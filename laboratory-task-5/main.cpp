@@ -1,12 +1,13 @@
-﻿/*Задание 5. Подпрограммы
+﻿/*
+                        Лабораторная работа №5
 
-Вычислить значение определенного интеграла с аналитически заданной подынтегральной
-функцией с заданной точностью eps
-Г) по формуле трапеций;
-Д) по формуле Симпсона (параболических трапеций).
-1: x * atan(x)
-2: 1.0 / ((x + 1) * sqrt(x * x + 1))
-3: x * sqrt(1 + x)
+    Вычислить значение определенного интеграла с аналитически заданной подынтегральной
+    функцией с заданной точностью eps
+    Г) по формуле трапеций;
+    Д) по формуле Симпсона (параболических трапеций).
+    1: x * atan(x)
+    2: 1.0 / ((x + 1) * sqrt(x * x + 1))
+    3: x * sqrt(1 + x)
 */
 
 
@@ -15,20 +16,24 @@
 #include <stdio.h>
 
 // Функции, которые будут вычислять значения подынтегральных функций
-double func1(double x) {
+double func1(double x)
+{
     return x * atan(x);
 }
 
-double func2(double x) {
+double func2(double x) 
+{
     return 1.0 / ((x + 1) * sqrt(x * x + 1));
 }
 
-double func3(double x) {
+double func3(double x) 
+{
     return x * sqrt(1 + x);
 }
 
 // Метод трапеций
-double trapezoidalRule(double (*func)(double), double a, double b, int n) {
+double trapezoidalRule(double (*func)(double), double a, double b, int n)
+{
     double h = (b - a) / n;
     double result = 0.5 * (func(a) + func(b));
 
@@ -40,7 +45,8 @@ double trapezoidalRule(double (*func)(double), double a, double b, int n) {
 }
 
 // Метод Симпсона
-double simpsonsRule(double (*func)(double), double a, double b, int n) {
+double simpsonsRule(double (*func)(double), double a, double b, int n) 
+{
     double h = (b - a) / n;
     double result = func(a) + func(b);
 
@@ -69,20 +75,27 @@ int main() {
     int n = 10000000;
 
     std::cout << "\nIntegral 1 (x * arctan(x)): \n";
+
     std::cout << "\nTrapezoidal Rule: " << "\n";
     printf("%10.7f", trapezoidalRule(func1, a1, b1, n));
+
     std::cout << "\nSimpson's Rule: " << "\n";
     printf("%10.7f", simpsonsRule(func1, a1, b1, n));
+
     std::cout << "\nIntegral 2 (1 / ((x+1)(sqrt(x * x + 1)))): \n";
+
     std::cout << "\nTrapezoidal Rule: " << "\n";
     printf("%10.7f", trapezoidalRule(func2, a2, b2, n));
+
     std::cout << "\nSimpson's Rule: " << "\n";
     printf("%10.7f", simpsonsRule(func2, a2, b2, n));
+
     std::cout << "\nIntegral 3 (x * (sqrt(1 + x))): \n";
+
     std::cout << "\nTrapezoidal Rule: " << "\n";
     printf("%10.7f", trapezoidalRule(func3, a3, b3, n));
+
     std::cout << "\nSimpson's Rule: " << "\n";
     printf("%10.7f", simpsonsRule(func3, a3, b3, n));
-
     return 0;
 }
