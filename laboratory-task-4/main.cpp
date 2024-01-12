@@ -128,7 +128,7 @@ void randParams(int32_t& left, int32_t& right)
 	}
 }
 
-void randFill(int32_t** matrix, size_t rows, size_t columns, int32_t& left, int32_t& right)
+void randomFill(int32_t** matrix, size_t rows, size_t columns, int32_t& left, int32_t& right)
 {
 	randParams(left, right);
 	for (size_t i = 0; i < rows; ++i){
@@ -138,7 +138,7 @@ void randFill(int32_t** matrix, size_t rows, size_t columns, int32_t& left, int3
 	}
 }
 
-void manFill(int32_t** matrix, size_t rows, size_t columns)
+void manualFill(int32_t** matrix, size_t rows, size_t columns)
 {
 	std::cout << "\nEnter elements:";
 	for (size_t i = 0; i < rows; ++i){
@@ -163,7 +163,7 @@ bool methodIsRand()
 		return false;
 		break;
 	default:
-		methodIsRand();
+		throw std::exception("Incorrect Input!");
 		break;
 	}
 }
@@ -190,11 +190,11 @@ int32_t main()
 
 	if (methodIsRand())
 	{
-		randFill(matrix, rows, columns, left, right);
+		randomFill(matrix, rows, columns, left, right);
 	}
 	else
 	{
-		manFill(matrix, rows, columns);
+		manualFill(matrix, rows, columns);
 	}
 
 	matrixOut(matrix, rows, columns);
