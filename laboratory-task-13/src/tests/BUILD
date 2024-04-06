@@ -1,7 +1,7 @@
 
 cc_test(
-    name = "test",
-    srcs = ["test.cpp"],
+    name = "tests",
+    srcs = ["tests.cpp"],
     deps = [
         "@googletest//:gtest_main",
         "//src/testFraction:testFraction",
