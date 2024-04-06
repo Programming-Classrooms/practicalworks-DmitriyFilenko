@@ -15,12 +15,12 @@ MyMatrix::MyMatrix(int32_t sqSize) {
 	rows = sqSize;
 	columns = sqSize;
 	matrixPtr = new int32_t * [sqSize];
-	for (size_t i = 0; i < sqSize; ++i) {
+	for (int32_t i = 0; i < sqSize; ++i) {
 		matrixPtr[i] = new int32_t[sqSize];
 	}
 
-	for (size_t i = 0; i < sqSize; ++i) {
-		for (size_t j = 0; j < sqSize; ++j)
+	for (int32_t i = 0; i < sqSize; ++i) {
+		for (int32_t j = 0; j < sqSize; ++j)
 		matrixPtr[i][j] = 0;
 	}
 }
@@ -29,12 +29,12 @@ MyMatrix::MyMatrix(int32_t row, int32_t column) {
 	rows = row;
 	columns = column;
 	matrixPtr = new int32_t * [row];
-	for (size_t i = 0; i < row; ++i) {
+	for (int32_t i = 0; i < row; ++i) {
 		matrixPtr[i] = new int32_t[column];
 	}
 
-	for (size_t i = 0; i < row; ++i) {
-		for (size_t j = 0; j < column; ++j)
+	for (int32_t i = 0; i < row; ++i) {
+		for (int32_t j = 0; j < column; ++j)
 			matrixPtr[i][j] = 0;
 	}
 }
@@ -45,12 +45,12 @@ MyMatrix::MyMatrix(const MyMatrix& rhs) {
 	if (rows > 0 && columns > 0) {
 
 		matrixPtr = new int32_t * [rows];
-		for (size_t i = 0; i < rows; ++i) {
+		for (int32_t i = 0; i < rows; ++i) {
 			matrixPtr[i] = new int32_t[columns];
 		}
 
-		for (size_t i = 0; i < rows; ++i) {
-			for (size_t j = 0; j < columns; ++j) {
+		for (int32_t i = 0; i < rows; ++i) {
+			for (int32_t j = 0; j < columns; ++j) {
 				matrixPtr[i][j] = rhs.matrixPtr[i][j];
 			}
 		}
@@ -65,7 +65,7 @@ MyMatrix::MyMatrix(const MyMatrix& rhs) {
 ===========================================================================*/
 
 MyMatrix::~MyMatrix() {
-	for (size_t i = 0; i < rows; ++i)
+	for (int32_t i = 0; i < rows; ++i)
 	{
 		delete[] matrixPtr[i];
 	}
@@ -77,9 +77,9 @@ MyMatrix::~MyMatrix() {
 ===========================================================================*/
 
 void MyMatrix::print() {
-	for (size_t i = 0; i < rows; ++i)
+	for (int32_t i = 0; i < rows; ++i)
 	{
-		for (size_t j = 0; j < columns; ++j)
+		for (int32_t j = 0; j < columns; ++j)
 		{
 			std::cout << std::setw(8) << matrixPtr[i][j];
 		}
@@ -186,8 +186,8 @@ void MyMatrix::setColumns(int32_t rhs){
 
 MyMatrix MyMatrix::operator*(const int32_t rhs)
 {
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < columns; ++j) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < columns; ++j) {
 			matrixPtr[i][j] *= rhs;
 		}
 	}
@@ -196,8 +196,8 @@ MyMatrix MyMatrix::operator*(const int32_t rhs)
 
 MyMatrix MyMatrix::operator/(const int32_t rhs)
 {
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < columns; ++j) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < columns; ++j) {
 			matrixPtr[i][j] /= rhs;
 		}
 	}
@@ -209,8 +209,8 @@ MyMatrix MyMatrix::operator+(const MyMatrix& rhs)
 	if (rows != rhs.rows || columns != rhs.columns) {
 		throw std::runtime_error("operation possible only with equal sizes!\n");
 	}
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < columns; ++j) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < columns; ++j) {
 			matrixPtr[i][j] = matrixPtr[i][j] + rhs.matrixPtr[i][j];
 		}
 	}
@@ -222,8 +222,8 @@ MyMatrix MyMatrix::operator-(const MyMatrix& rhs)
 	if (rows != rhs.rows || columns != rhs.columns) {
 		throw std::runtime_error("operation possible only with equal sizes!\n");
 	}
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < columns; ++j) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < columns; ++j) {
 			matrixPtr[i][j] = matrixPtr[i][j] - rhs.matrixPtr[i][j];
 		}
 	}
@@ -236,9 +236,9 @@ MyMatrix MyMatrix::operator*(const MyMatrix& rhs)
 		throw std::runtime_error("Incorrect parameters!(amount of Columns of first must be equal to amount of Rows of second)\n");
 	}
 	MyMatrix result(rows, rhs.columns);
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < rhs.columns; ++j) {
-			for (size_t k = 0; k < columns; ++k) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < rhs.columns; ++j) {
+			for (int32_t k = 0; k < columns; ++k) {
 				result.matrixPtr[i][j] = result.matrixPtr[i][j] + matrixPtr[i][k] * rhs.matrixPtr[k][j];
 			}
 		}
@@ -252,8 +252,8 @@ MyMatrix MyMatrix::operator*(const MyMatrix& rhs)
 
 MyMatrix MyMatrix::operator/=(const int32_t rhs)
 {
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < columns; ++j) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < columns; ++j) {
 			matrixPtr[i][j] /= rhs;
 		}
 	}
@@ -265,8 +265,8 @@ MyMatrix MyMatrix::operator+=(const MyMatrix& rhs)
 	if (rows != rhs.rows || columns != rhs.columns) {
 		throw std::runtime_error("operation possible only with equal sizes!\n");
 	}
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < columns; ++j) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < columns; ++j) {
 			matrixPtr[i][j] = matrixPtr[i][j] + rhs.matrixPtr[i][j];
 		}
 	}
@@ -278,8 +278,8 @@ MyMatrix MyMatrix::operator-=(const MyMatrix& rhs)
 	if (rows != rhs.rows || columns != rhs.columns) {
 		throw std::runtime_error("operation possible only with equal sizes!\n");
 	}
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < columns; ++j) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < columns; ++j) {
 			matrixPtr[i][j] = matrixPtr[i][j] - rhs.matrixPtr[i][j];
 		}
 	}
@@ -292,9 +292,9 @@ MyMatrix MyMatrix::operator*=(const MyMatrix& rhs)
 		throw std::runtime_error("Incorrect parameters!(amount of Columns of first must be equal to amount of Rows of second)\n");
 	}
 	MyMatrix result(rows, rhs.columns);
-	for (size_t i = 0; i < rows; ++i) {
-		for (size_t j = 0; j < rhs.columns; ++j) {
-			for (size_t k = 0; k < columns; ++k) {
+	for (int32_t i = 0; i < rows; ++i) {
+		for (int32_t j = 0; j < rhs.columns; ++j) {
+			for (int32_t k = 0; k < columns; ++k) {
 				result.matrixPtr[i][j] = result.matrixPtr[i][j] + matrixPtr[i][k] * rhs.matrixPtr[k][j];
 			}
 		}
@@ -304,8 +304,8 @@ MyMatrix MyMatrix::operator*=(const MyMatrix& rhs)
 
 MyMatrix& operator*=(MyMatrix& a,const int32_t rhs)
 {
-	for (size_t i = 0; i < a.rows; ++i) {
-		for (size_t j = 0; j < a.columns; ++j) {
+	for (int32_t i = 0; i < a.rows; ++i) {
+		for (int32_t j = 0; j < a.columns; ++j) {
 			a.matrixPtr[i][j] *= rhs;
 		}
 	}
@@ -314,8 +314,8 @@ MyMatrix& operator*=(MyMatrix& a,const int32_t rhs)
 
 MyMatrix operator * (const int32_t rhs, MyMatrix& a)
 {
-	for (size_t i = 0; i < a.rows; ++i) {
-		for (size_t j = 0; j < a.columns; ++j) {
+	for (int32_t i = 0; i < a.rows; ++i) {
+		for (int32_t j = 0; j < a.columns; ++j) {
 			a.matrixPtr[i][j] *= rhs;
 		}
 	}
@@ -325,8 +325,8 @@ MyMatrix operator * (const int32_t rhs, MyMatrix& a)
 
 MyMatrix operator * (MyMatrix& a, const int32_t rhs)
 {
-	for (size_t i = 0; i < a.rows; ++i) {
-		for (size_t j = 0; j < a.columns; ++j) {
+	for (int32_t i = 0; i < a.rows; ++i) {
+		for (int32_t j = 0; j < a.columns; ++j) {
 			a.matrixPtr[i][j] *= rhs;
 		}
 	}
@@ -342,8 +342,8 @@ bool MyMatrix::operator==(const MyMatrix& rhs)
 {
 	if (rows == rhs.rows && columns == rhs.columns) {
 		bool isEqual = true;
-		for (size_t i = 0; i < rows; ++i) {
-			for (size_t j = 0; j < columns; ++i) {
+		for (int32_t i = 0; i < rows; ++i) {
+			for (int32_t j = 0; j < columns; ++i) {
 				if (matrixPtr[i][j] != rhs.matrixPtr[i][j]) {
 					isEqual = false;
 					return isEqual;
@@ -366,9 +366,9 @@ bool MyMatrix::operator!=(const MyMatrix& rhs)
 
 std::ostream& operator<<(std::ostream& out, const MyMatrix& rhs)
 {
-	for (size_t i = 0; i < rhs.rows; ++i)
+	for (int32_t i = 0; i < rhs.rows; ++i)
 	{
-		for (size_t j = 0; j < rhs.columns; ++j)
+		for (int32_t j = 0; j < rhs.columns; ++j)
 		{
 			out << std::setw(8) << rhs.matrixPtr[i][j];
 		}
@@ -395,9 +395,9 @@ std::istream& operator>>(std::istream& in, MyMatrix& rhs)
 	}
 	if (hadRows && hadColumns) {
 		std::cout << "Enter elements for [ " << rhs.rows << " ] [ " << rhs.columns <<" ] matrix: \n";
-		for (size_t i = 0; i < rhs.rows; ++i)
+		for (int32_t i = 0; i < rhs.rows; ++i)
 		{
-			for (size_t j = 0; j < rhs.columns; ++j)
+			for (int32_t j = 0; j < rhs.columns; ++j)
 			{
 				in >> rhs.matrixPtr[i][j];
 			}
@@ -406,12 +406,12 @@ std::istream& operator>>(std::istream& in, MyMatrix& rhs)
 	else {
 		rhs.matrixPtr = new int32_t * [rhs.rows];
 		std::cout << "Enter elements for [ " << rhs.rows << " ] [ " << rhs.columns << " ] matrix: \n";
-		for (size_t i = 0; i < rhs.rows; ++i) {
+		for (int32_t i = 0; i < rhs.rows; ++i) {
 			rhs.matrixPtr[i] = new int32_t[rhs.columns];
 		}
 
-		for (size_t i = 0; i < rhs.rows; ++i) {
-			for (size_t j = 0; j < rhs.columns; ++j)
+		for (int32_t i = 0; i < rhs.rows; ++i) {
+			for (int32_t j = 0; j < rhs.columns; ++j)
 				in >> rhs.matrixPtr[i][j];
 		}
 	}
