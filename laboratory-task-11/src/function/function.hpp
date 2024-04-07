@@ -1,6 +1,6 @@
 
-#ifndef FUNCS_HPP
-#define FUNCS_HPP
+#ifndef FUNCTION_HPP
+#define FUNCTION_HPP
 
 #include <fstream>
 #include <iostream>
@@ -33,4 +33,4 @@ void WriteEmployeesToFile(const std::string& , Employee* , int );
 
 void WriteEmployeesToFileBinary(const std::string& , Employee* , int );
 
-#endif //FUNCS_HPP
+#endif //FUNCTION_HPP

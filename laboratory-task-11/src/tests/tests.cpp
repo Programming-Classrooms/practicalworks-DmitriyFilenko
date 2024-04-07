@@ -1,7 +1,7 @@
 
 #include <stdexcept>
 #include <gtest/gtest.h>
-#include "../funcs/funcs.hpp"
+#include "../function/function.hpp"
 
 
 TEST(testCase, testName) 
