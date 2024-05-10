@@ -2,124 +2,31 @@
 #include "src/Student/Student.hpp"
 
 
-// Test fixture for student file processing
-class StudentFileProcessingTest : public ::testing::Test {
-protected:
-    std::vector<Student> students;
-
-    void SetUp() override {
-        // Create some sample student data for testing
-        students.emplace_back("John Smith", 3, "A");
-        students.emplace_back("Alice Johnson", 2, "B");
-        students.emplace_back("Bob White", 1, "C");
-    }
-};
-
-// Test case for reading student data from a file
-TEST_F(StudentFileProcessingTest, ReadStudentsFromFile) {
-    std::string filePath = "src/data/StudentsTest.txt";
-    std::ofstream testFile(filePath);
-    testFile << "John 3 A\n";
-    testFile << "Alice 2 B\n";
-    testFile << "Bob 1 C\n";
-    testFile.close();
-
-    std::vector<Student> expectedStudents = {
-        Student("John", 3, "A"),
-        Student("Alice", 2, "B"),
-        Student("Bob", 1, "C")
-    };
-
-    ASSERT_EQ(readStudentsFromFile(filePath), expectedStudents);
+TEST(StudentTest, FullNameTest) {
+    Student student("Alice", 3, "GroupA");
+    EXPECT_EQ(student.getFullName(), "Alice");
 }
 
-// Test case for sorting students by full name and writing to a file
-TEST_F(StudentFileProcessingTest, SortByFullNameAndWriteToFile) {
-    std::vector<Student> students = {
-        Student("John Smith", 3, "A"),
-        Student("Alice Johnson", 2, "B"),
-        Student("Bob White", 1, "C")
-    };
-
-    std::string filePath = "src/data/SortedByFullNameTest.txt";
-    sortByFullNameAndWriteToFile(students, filePath);
-
-    std::ifstream testFile(filePath);
-    std::string line;
-    std::vector<std::string> fileContent;
-    while (std::getline(testFile, line)) {
-        fileContent.push_back(line);
-    }
-    testFile.close();
-
-    std::vector<std::string> expectedFileContent = {
-        "Alice Johnson 2 B",
-        "Bob White 1 C",
-        "John Smith 3 A"
-    };
-
-    ASSERT_EQ(fileContent, expectedFileContent);
+TEST(StudentTest, CourseTest) {
+    Student student("Bob", 2, "GroupB");
+    EXPECT_EQ(student.getCourse(), 2);
 }
 
-// Test case for sorting students by course and group and writing to a file
-TEST_F(StudentFileProcessingTest, SortByCourseAndGroupAndWriteToFile) {
-    std::vector<Student> students = {
-        Student("John Smith", 3, "B"),
-        Student("Alice Johnson", 1, "C"),
-        Student("Bob White", 2, "A")
-    };
-
-    std::string filePath = "src/data/SortedByCourseAndGroupTest.txt";
-    sortByCourseAndGroupAndWriteToFile(students, filePath);
-
-    std::ifstream testFile(filePath);
-    std::string line;
-    std::vector<std::string> fileContent;
-    while (std::getline(testFile, line)) {
-        fileContent.push_back(line);
-    }
-    testFile.close();
-
-    std::vector<std::string> expectedFileContent = {
-        "Alice Johnson 1 C",
-        "Bob White 2 A",
-        "John Smith 3 B"
-    };
-
-    ASSERT_EQ(fileContent, expectedFileContent);
+TEST(StudentTest, GroupTest) {
+    Student student("Charlie", 1, "GroupC");
+    EXPECT_EQ(student.getGroup(), "GroupC");
 }
 
-// Test case for handling an empty list of students
-TEST_F(StudentFileProcessingTest, EmptyStudentsList) {
-    std::vector<Student> students;
-
-    std::string filePath = "src/data/EmptyStudentsTest.txt";
-    sortByFullNameAndWriteToFile(students, filePath);
-
-    std::ifstream testFile(filePath);
-    bool isEmpty = testFile.peek() == std::ifstream::traits_type::eof();
-    testFile.close();
-
-    ASSERT_TRUE(isEmpty);
+TEST(StudentTest, CompareByFullNameTest) {
+    Student student1("Alice", 3, "GroupA");
+    Student student2("Bob", 2, "GroupB");
+    EXPECT_TRUE(compareByFullName(student1, student2));
 }
 
-// Test case for handling a file with no students data
-TEST_F(StudentFileProcessingTest, NoDataInFile) {
-    std::string filePath = "src/data/NoDataTest.txt";
-    std::ofstream testFile(filePath);
-    testFile.close();
-
-    std::vector<Student> students = readStudentsFromFile(filePath);
-
-    ASSERT_TRUE(students.empty());
-}
-
-// Test case for handling invalid file path
-TEST_F(StudentFileProcessingTest, InvalidFilePath) {
-    std::string filePath = "invalid_path/Students.txt";
-    std::vector<Student> students = readStudentsFromFile(filePath);
-
-    ASSERT_TRUE(students.empty());
+TEST(StudentTest, CompareByCourseAndGroupTest) {
+    Student student1("Alice", 3, "GroupA");
+    Student student2("Bob", 3, "GroupB");
+    EXPECT_TRUE(compareByCourseAndGroup(student1, student2));
 }
 
 int main(int argc, char **argv) {

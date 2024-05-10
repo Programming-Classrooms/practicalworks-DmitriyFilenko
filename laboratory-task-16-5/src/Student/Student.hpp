@@ -22,10 +22,6 @@ public:
     const std::string& getGroup() const;
 };
 
-bool operator==(const Student& s1, const Student& s2) {
-    return s1.getFullName() == s2.getFullName() && s1.getCourse() == s2.getCourse() && s1.getGroup() == s2.getGroup();
-}
-
 bool compareByFullName(const Student& s1, const Student& s2);
 
 bool compareByCourseAndGroup(const Student& s1, const Student& s2);
