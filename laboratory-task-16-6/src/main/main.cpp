@@ -2,19 +2,6 @@
 #include "src/Train/Train.hpp"
 
 
-// Функция для сравнения времени отправления двух поездов
-bool compareDepartureTime(const Train& a, const Train& b) {
-    // Преобразование строк времени отправления в структуру tm
-    struct tm timeA, timeB;
-    strptime(a.departureTime.c_str(), "%H:%M", &timeA);
-    if (a.departureTime == ""){
-        return mktime(&timeA) < mktime(&timeB);
-    }
-    strptime(b.departureTime.c_str(), "%H:%M", &timeB);
-    // Сравнение времени отправления
-    return mktime(&timeA) < mktime(&timeB);
-}
-
 int32_t main() {
     // Вектор для хранения информации о поездах
     std::vector<Train> trains;

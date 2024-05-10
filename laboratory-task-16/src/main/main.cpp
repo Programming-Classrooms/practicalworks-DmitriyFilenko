@@ -6,7 +6,6 @@ int32_t main()
 {
     try{
     srand(time(NULL));
-    //задание 1
     std::vector<int32_t> numbers;
     int32_t num;
 
@@ -185,6 +184,7 @@ throw std::runtime_error("No numbers entered");
     print(matrix, rows, cols);
 
 return 0;
+
     }
     catch(std::exception err){
         std::cerr << "OOPS! Exception: " << err.what() <<std::endl;

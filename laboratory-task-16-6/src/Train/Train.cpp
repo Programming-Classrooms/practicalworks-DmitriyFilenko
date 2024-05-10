@@ -16,3 +16,16 @@ void Train::printTrainInfo() {
         std::cout << "Время в пути: " << travelTime << " ч." << std::endl;
         std::cout << std::endl;
     }
+
+
+bool compareDepartureTime(const Train& a, const Train& b) {
+    // Преобразование строк времени отправления в структуру tm
+    struct tm timeA, timeB;
+    strptime(a.departureTime.c_str(), "%H:%M", &timeA);
+    if (a.departureTime == ""){
+        return mktime(&timeA) < mktime(&timeB);
+    }
+    strptime(b.departureTime.c_str(), "%H:%M", &timeB);
+    // Сравнение времени отправления
+    return mktime(&timeA) < mktime(&timeB);
+}

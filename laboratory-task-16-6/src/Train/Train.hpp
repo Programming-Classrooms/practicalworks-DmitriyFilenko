@@ -34,4 +34,7 @@ public:
     void printTrainInfo();
 };
 
+// Функция для сравнения времени отправления двух поездов
+bool compareDepartureTime(const Train& a, const Train& b);
+
 #endif //TRAIN_HPP

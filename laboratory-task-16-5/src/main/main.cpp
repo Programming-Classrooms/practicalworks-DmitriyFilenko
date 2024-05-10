@@ -1,21 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <algorithm>
+
 #include "src/Student/Student.hpp"
 
-// Функция для сравнения студентов по фамилии
-bool compareByFullName(const Student& s1, const Student& s2) {
-    return s1.getFullName() < s2.getFullName();
-}
-
-// Функция для сравнения студентов по курсу и группе
-bool compareByCourseAndGroup(const Student& s1, const Student& s2) {
-    if (s1.getCourse() == s2.getCourse()) {
-        return s1.getGroup() < s2.getGroup();
-    }
-    return s1.getCourse() < s2.getCourse();
-}
 
 int main() {
     // Чтение данных из файла Students.txt

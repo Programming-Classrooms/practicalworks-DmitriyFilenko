@@ -1,6 +1,7 @@
 
 #include "function.hpp"
 
+
 std::vector<std::vector<int32_t>> deleteMaxElement(std::vector<std::vector<int32_t>>& matrix, int32_t& rows, int32_t& cols) {
     // найти максимальный элемент
     int32_t maxElement = -2147483648;
