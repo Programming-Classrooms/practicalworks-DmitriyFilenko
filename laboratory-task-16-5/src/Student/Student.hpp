@@ -18,7 +18,7 @@ public:
     Student(const std::string& fullName, int32_t course, const std::string& group);
 
     const std::string& getFullName() const;
-    int getCourse() const;
+    int32_t getCourse() const;
     const std::string& getGroup() const;
 };
 

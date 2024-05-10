@@ -2,7 +2,7 @@
 #include "src/Train/Train.hpp"
 
 
-int32_t main() {
+int main() {
     // Вектор для хранения информации о поездах
     std::vector<Train> trains;
 

@@ -5,10 +5,10 @@
 std::vector<std::vector<int32_t>> deleteMaxElement(std::vector<std::vector<int32_t>>& matrix, int32_t& rows, int32_t& cols) {
     // найти максимальный элемент
     int32_t maxElement = -2147483648;
-    int32_t maxRow = -1;
-    int32_t maxCol = -1;
-    for (int32_t i = 0; i < matrix.size(); ++i) {
-        for (int32_t j = 0; j < matrix[i].size(); ++j) {
+    size_t maxRow = 0;
+    size_t maxCol = 0;
+    for (size_t i = 0; i < matrix.size(); ++i) {
+        for (size_t j = 0; j < matrix[i].size(); ++j) {
             if (matrix[i][j] > maxElement) {
                 maxElement = matrix[i][j];
                 maxRow = i;
@@ -21,7 +21,7 @@ std::vector<std::vector<int32_t>> deleteMaxElement(std::vector<std::vector<int32
     if (maxRow >= 0 && maxRow < matrix.size() && maxCol >= 0 && maxCol < matrix[maxRow].size()) {
         // удаление строки и столбца
         matrix.erase(matrix.begin() + maxRow);
-        for (int32_t i = 0; i < matrix.size(); ++i) {
+        for (size_t i = 0; i < matrix.size(); ++i) {
             matrix[i].erase(matrix[i].begin() + maxCol);
         }
         rows = matrix.size();
@@ -40,7 +40,7 @@ void print(std::vector<std::vector<int32_t>> matrix, int32_t rows, int32_t cols)
     }
 }
 
-std::vector < std::vector < int32_t > > sortWithoutSorting(std::vector < std::vector < int32_t > > matrix, int32_t rows, int32_t cols) {
+void sortWithoutSorting(std::vector < std::vector < int32_t > > matrix, int32_t rows, int32_t cols) {
     for (int32_t i = 0; i < rows - 1; ++i) {
         int32_t minRowInd = i;
         for (int32_t j = i + 1; j < rows; ++j) {
@@ -54,4 +54,5 @@ std::vector < std::vector < int32_t > > sortWithoutSorting(std::vector < std::ve
             std::swap(matrix[i], matrix[minRowInd]);
      }
     }
+
 }

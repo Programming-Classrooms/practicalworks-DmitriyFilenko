@@ -25,7 +25,6 @@ throw std::runtime_error("No numbers entered");
 
     // вывод суммы вектора
     std::cout << "Sum is: " << std::accumulate(numbers.begin(), numbers.end(), 0) << std::endl;
-    int32_t numbersEqAmount = 0;
     int32_t compareNumber = 0;
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // пропускаем все до символа новой строки
@@ -116,7 +115,7 @@ throw std::runtime_error("No numbers entered");
 
     std::vector <std::string> words;
     std::string word;
-    std::ifstream fin("src/main/something.txt");
+    std::ifstream fin("src/data/something.txt");
     while (fin >> word) {
         words.push_back(word);
     }
