@@ -1,5 +1,5 @@
-#ifndef TDEQUE_HPP
-#define TDEQUE_HPP
+#ifndef TDEQUE_H
+#define TDEQUE_H
 
 #include <cstdlib>
 #include <iostream>
@@ -41,6 +41,8 @@ public:
     void SetByIndex(const T&, unsigned);
     void Browse(void(*)(T&));
     void Browse(void(*)(T)) const;
+    int GetSize() const;  // Новый метод GetSize
+    const T& operator[](unsigned) const;  // Новый оператор []
 };
 
 // Конструктор по умолчанию
@@ -212,6 +214,18 @@ void TDeque<T>::Browse(void(*func)(T)) const {
     for (TDequeItem* item = front; item != nullptr; item = item->next) {
         func(item->Info);
     }
+}
+
+// Получить размер дека
+template<typename T>
+int TDeque<T>::GetSize() const {
+    return size;
+}
+
+// Доступ к элементу по индексу с помощью оператора []
+template<typename T>
+const T& TDeque<T>::operator[](unsigned index) const {
+    return GetByIndex(index);
 }
 
 #endif // TDEQUE_HPP
