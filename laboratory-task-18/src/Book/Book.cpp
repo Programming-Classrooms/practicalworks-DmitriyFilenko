@@ -1,28 +1,28 @@
-#include "Book.hpp"
 #include <algorithm>
+#include "Book.hpp"
 
 
 Book::Book(const std::string& isbn, const std::string& title, double price, size_t count)
     : isbn(isbn), title(title), price(price), count(count) {}
 
 std::string Book::getISBN() const {
-    return isbn;
+    return this->isbn;
 }
 
 std::string Book::getTitle() const {
-    return title;
+    return this->title;
 }
 
 std::vector<std::string> Book::getAuthors() const {
-    return authors;
+    return this->authors;
 }
 
 double Book::getPrice() const {
-    return price;
+    return this->price;
 }
 
 size_t Book::getCount() const {
-    return count;
+    return this->count;
 }
 
 void Book::addAuthor(const std::string& author) {

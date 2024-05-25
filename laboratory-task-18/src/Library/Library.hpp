@@ -1,10 +1,10 @@
 #ifndef LIBRARY_HPP
 #define LIBRARY_HPP
 
-#include "src/Book/Book.hpp"
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include "src/Book/Book.hpp"
 
 
 class Library {
