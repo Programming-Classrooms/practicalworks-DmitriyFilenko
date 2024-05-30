@@ -1,4 +1,3 @@
-
 cc_test(
     name = "tests",
     srcs = ["tests.cpp"],

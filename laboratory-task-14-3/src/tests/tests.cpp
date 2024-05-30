@@ -1,11 +1,8 @@
-
 #include <stdexcept>
 #include <gtest/gtest.h>
 
-
-TEST(testCase, testName) 
-{
-    EXPECT_EQ(1, 1);
+TEST(testing, test){
+    EXPECT_EQ(1,1);
 }
 
 int main(int argc, char **argv) {
