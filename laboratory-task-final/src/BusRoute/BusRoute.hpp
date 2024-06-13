@@ -2,42 +2,70 @@
 #define BUSROUTE_HPP
 
 
-#include <iostream> // std::cin/out
+#include <cstdlib>
+#include <iostream> 
+#include <fstream>
+#include <sstream> 
+#include <vector> 
+#include <queue>
+#include <stdexcept>
 #include <algorithm>
-#include <stdexcept> // try-catch
-#include <queue> // container
-#include <string> // std::string
+#include <map>
+#include <set>
 
 
-class BusRoute{
+class BusRoute {
 private:
-int32_t routeNumber;
-std::string driverName;
-int32_t busNumber;
-std::string busMark;
+    std::string routeNumber;
+    std::string busDriver;
+    std::string busNumber;
+    std::string busMark;
+
 public:
-BusRoute(){}; // Конструктор по умолчанию
-BusRoute(int32_t routeNumberRhs, std::string driverNameRhs, int32_t busNumberRhs, std::string busMarkRhs): // Конструктор с параметрами
- routeNumber(routeNumberRhs),
- driverName(driverNameRhs),
- busNumber(busNumberRhs),
- busMark(busMarkRhs){}
- BusRoute(BusRoute&);
- ~BusRoute() = default; // Деструктор
- void setRouteNumber(int32_t routeNumberRhs);
- void setDriverName(std::string nameRhs);
- void setBusNumber(int32_t busNumberRhs);
- void setBusMark(std::string busMarkRhs);
+    BusRoute() = default;
 
- int32_t getRouteNumber();
- std::string getDriverName();
- int32_t getBusNumber();
- std::string getBusMark();
+    BusRoute(std::string routeNumberRhs, std::string busDriverRhs, std::string busNumberRhs, std::string busMarkRhs)
+        : routeNumber(routeNumberRhs), busDriver(busDriverRhs), busNumber(busNumberRhs), busMark(busMarkRhs) {}
 
- friend std::ostream& operator<<(std::ostream& out, BusRoute obj){
-    out << "\nНомер:" << obj.routeNumber << "\nВодитель:"  << obj.driverName << "\nРегистрационный номер:"  << obj.busNumber << "\nМарка автобуса:"  << obj.busMark;
- return out;
- }
+    ~BusRoute() = default;
+
+    std::string getRouteNumber() const { return routeNumber; }
+    std::string getBusDriver() const { return busDriver; }
+    std::string getBusNumber() const { return busNumber; }
+    std::string getBusMark() const { return busMark; }
+
+    void setRouteNumber(const std::string& routeNumberRhs) { routeNumber = routeNumberRhs; }
+    void setBusDriver(const std::string& busDriverRhs) { busDriver = busDriverRhs; }
+    void setBusNumber(const std::string& busNumberRhs) { busNumber = busNumberRhs; }
+    void setBusMark(const std::string& busMarkRhs) { busMark = busMarkRhs; }
+
+    friend std::ostream& operator<<(std::ostream& out, const BusRoute& BR) {
+        out << "\nНомер Маршрута: " << BR.getRouteNumber()
+            << "\nВодитель: " << BR.getBusDriver()
+            << "\nНомер автобуса: " << BR.getBusNumber()
+            << "\nМарка Автобуса: " << BR.getBusMark() << '\n';
+        return out;
+    }
+
+    BusRoute& operator=(const BusRoute& BR) {
+        if (this != &BR) {
+            setRouteNumber(BR.getRouteNumber());
+            setBusDriver(BR.getBusDriver());
+            setBusNumber(BR.getBusNumber());
+            setBusMark(BR.getBusMark());
+        }
+        return *this;
+    }
+
+    friend bool operator<(const BusRoute& BR1, const BusRoute& BR2) {
+        return BR1.getBusNumber() < BR2.getBusNumber();
+    }
+
+    bool operator==(const BusRoute& other) const {
+        return routeNumber == other.routeNumber &&
+               busNumber == other.busNumber;
+    }
 };
+
 
 #endif //BUSROUTE_HPP

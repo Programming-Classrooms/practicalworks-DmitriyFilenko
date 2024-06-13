@@ -1,5 +1,5 @@
 filegroup(
-name = 'data',
-srcs = glob(['*']),
-visibility = ["//visibility:public"]
+        name = 'data',
+        srcs = glob(['*']),
+        visibility = ["//visibility:public"]
 )

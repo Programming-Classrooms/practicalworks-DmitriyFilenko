@@ -1,8 +1,12 @@
-#include <gtest/gtest.h>
 #include <stdexcept>
+#include <gtest/gtest.h>
+#include "src/function/function.hpp"
+#include "src/BusRoute/BusRoute.hpp"
 
-TEST(test, tessting){
-    EXPECT_EQ(1,1);
+
+TEST(testCase, testName) 
+{
+    EXPECT_EQ(1, 1);
 }
 
 int main(int argc, char **argv) {
