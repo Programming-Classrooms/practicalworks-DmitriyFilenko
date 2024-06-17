@@ -5,4 +5,3 @@ cc_test(
         "@googletest//:gtest_main",
         "//src/TDeque:TDeque"
     ]
-)
