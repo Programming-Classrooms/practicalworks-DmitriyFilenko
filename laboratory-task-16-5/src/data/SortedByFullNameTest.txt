@@ -1,0 +1,3 @@
+Alice Johnson 2 B
+Bob White 1 C
+John Smith 3 A
